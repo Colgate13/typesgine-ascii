@@ -1,0 +1,34 @@
+{
+  "name": "typesgine-ascii",
+  "version": "1.0.0",
+  "description": "Engine for games ASCII into terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Colgate13/typesgine-ascii.git"
+  },
+  "keywords": [
+    "games",
+    "node",
+    "typescript",
+    "node-games",
+    "terminal",
+    "terminal-games",
+    "terminal-io"
+  ],
+  "author": "Gabriel Barros F. Sá",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Colgate13/typesgine-ascii/issues"
+  },
+  "homepage": "https://github.com/Colgate13/typesgine-ascii#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.39",
+    "jest": "^28.1.0",
+    "typescript": "^4.7.3"
+  }
+}
