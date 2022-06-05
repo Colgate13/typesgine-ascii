@@ -2,10 +2,18 @@
   "name": "typesgine-ascii",
   "version": "1.0.0",
   "description": "Engine for games ASCII into terminal",
-  "main": "index.js",
+  "main": "dist/typesgine-ascii-v1.0.0.js",
+  "types": "dist/src/main.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "buildJs": "tsc",
+    "buildWebpack": "webpack --env PRODUCTION",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watchAll --maxWorkers=1",
+    "test:clear": "jest --clearCache"
   },
   "repository": {
     "type": "git",
@@ -29,6 +37,8 @@
   "devDependencies": {
     "@types/node": "^17.0.39",
     "jest": "^28.1.0",
-    "typescript": "^4.7.3"
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3",
+    "webpack-cli": "^4.9.2"
   }
 }
