@@ -24,13 +24,6 @@ Typesgine is engine for create games ascii into terminal with IO, FPS and render
 
 <div id="Features"></div>
 
-- [x] Configuração para Classes
-- [x] Configuração para POO
-- [x] Configuração para Abstração
-- [x] Configuração para Encapsulamento
-- [x] Configuração para Herança
-- [x] Configuração para Polimorfismo
-
 ## License
 
 <div id="license"></div>
