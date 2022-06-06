@@ -1,8 +1,8 @@
 {
   "name": "typesgine-ascii",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Engine for games ASCII into terminal",
-  "main": "dist/typesgine-ascii-v1.0.0.js",
+  "main": "dist/typesgine-ascii-v1.0.1.js",
   "types": "dist/src/main.d.ts",
   "files": [
     "dist/"
@@ -14,6 +14,9 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --maxWorkers=1",
     "test:clear": "jest --clearCache"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
