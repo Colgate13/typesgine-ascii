@@ -1,9 +1,9 @@
 {
-  "name": "@colgate13/typesgine-ascii",
+  "name": "typesgine-ascii",
   "version": "1.0.0",
   "description": "Engine for games ASCII into terminal",
-  "main": "dist/@colgate13/typesgine-ascii-v1.0.0.js",
-  "types": "dist/src/main.d.ts",
+  "main": "dist/typesgine-ascii-v1.0.0.js",
+  "types": "dist/main.d.ts",
   "files": [
     "dist/"
   ],
@@ -14,9 +14,6 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --maxWorkers=1",
     "test:clear": "jest --clearCache"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
@@ -39,6 +36,8 @@
   "homepage": "https://github.com/Colgate13/typesgine-ascii#readme",
   "devDependencies": {
     "@types/node": "^17.0.39",
+    "copy-webpack-plugin": "^11.0.0",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
     "jest": "^28.1.0",
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.3",
