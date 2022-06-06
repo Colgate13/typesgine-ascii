@@ -1,5 +1,5 @@
 {
-  "name": "@colgate13/typesgine-ascii",
+  "name": "typesgine-ascii",
   "version": "1.0.0",
   "description": "Engine for games ASCII into terminal",
   "main": "dist/@colgate13/typesgine-ascii-v1.0.0.js",
