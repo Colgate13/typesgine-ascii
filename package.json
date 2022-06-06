@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "buildJs": "tsc",
-    "buildWebpack": "webpack --env PRODUCTION",
+    "build": "webpack --env PRODUCTION",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --maxWorkers=1",
