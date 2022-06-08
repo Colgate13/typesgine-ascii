@@ -9,7 +9,7 @@ export interface IKeyMap {
   keyName: string;
 }
 
-const Key = {
+export const Key = {
   Unknown: '',
 
   // Letters
