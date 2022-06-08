@@ -17,6 +17,8 @@ export class EngineIo implements IAbstractIo {
   protected intervalId: any;
   protected startTime: number;
   protected active = false;
+  protected currentFrameData: string | string[][] = '';
+
 
   constructor({ fps, keypressHandler, renderHandler, frameHandler }: EngineIoProps) {
     this.frameDuration = Math.round(1000 / fps);
@@ -37,8 +39,13 @@ export class EngineIo implements IAbstractIo {
   }
 
   public render(data: string[][] | string, width: number = 0, height: number = 0): void {
-    setInterval(() => {
+    
+      if (this.currentFrameData === data) {
+        return;
+      }
+      
       this.clear();
+    
       this.renderHandler.write(
         typeof data === 'string'
           ?
@@ -46,7 +53,7 @@ export class EngineIo implements IAbstractIo {
           :
           this.renderArray(data));
 
-    }, this.frameDuration);
+      this.currentFrameData = data;
   }
 
   public renderArray(dataArray: string[][]): string {
@@ -78,7 +85,7 @@ export class EngineIo implements IAbstractIo {
       for (let x = 0; x < width; x++) {
         line += data[index++];
       }
-      fullFrame += (line + '\n');
+      fullFrame += (line/* + '\n'*/);
     }
     return fullFrame;
   }

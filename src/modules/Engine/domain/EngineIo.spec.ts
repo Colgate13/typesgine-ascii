@@ -3,14 +3,23 @@ import { RenderTerminal } from '../../Render/RenderTerminal';
 import { FrameHandler } from '../../Render/FrameRender';
 import { InputHandler } from '../../Input/InputHandler';
 import { Render } from '../../Render/domain/Render';
+import { setInterval } from 'timers/promises';
 
 console.clear();
 
+let letter = 'A';
+let Commander = false;
+
 const render = () => {
   let final = '';
+
   for (let i = 0; i < 16; i++) {
     for (let j = 0; j < 24; j++) {
-      final += `${Math.round(Math.random() * (0 - 9) + 9)}`;
+      if (Commander) {
+        final += `${letter}`;
+      } else {
+        final += `0`;
+      }
     }
   }
 
@@ -22,11 +31,21 @@ const frameHandler = FrameHandler.Handler((engineIo: EngineIo) => {
 })
 
 const inputHandler = InputHandler.Handler((engineIo: EngineIo, keyPress: string) => {
+  
   console.log("KeyPress: ", keyPress)
+  console.log("Letter: ", Commander);
+
+  if (keyPress === 'a') { 
+    Commander = true;
+  }
+
+  if (keyPress === 'd') { 
+    Commander = false;
+  }
 })
 
 new EngineIo({
-  fps: 60,
+  fps: 1,
   renderHandler: new Render(new RenderTerminal()),
   frameHandler: frameHandler,
   keypressHandler: inputHandler,

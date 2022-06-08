@@ -4,7 +4,7 @@
   <a href="#about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#Features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#Exemples">Exemples</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#Examples">Examples</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#Funcs">Functions</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#license">License</a>
 </p>
@@ -30,7 +30,6 @@ Typesgine is engine for create games ascii into terminal with IO, FPS and render
 - [x] [IO](#io)
 - [x] [Render](#render)
 
-
 <div id="Funcs"></div>
 
 ## Functions
@@ -45,22 +44,21 @@ If Array [][] / [[]] dont set the width and height of the screen, the engine wil
 If String set the width and height of the screen.
 
 ```typescript
-
 /// typesgine.FrameHandler.Handler(callback(engineIo))
 
 const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
-  engineIo.render('1234', 24, 16);
-})
+  engineIo.render("1234", 24, 16);
+});
 
-  let Graph = [
-    ["㊗", "2", "㊗", "㊗", "\n"],
-    ["㊗", "㊗", "3", "㊗", "\n"],
-    ["㊗", "4", "㊗", "㊗", "\n"],
-  ];
+let Graph = [
+  ["㊗", "2", "㊗", "㊗", "\n"],
+  ["㊗", "㊗", "3", "㊗", "\n"],
+  ["㊗", "4", "㊗", "㊗", "\n"],
+];
 
 const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
   engineIo.render(Graph);
-})
+});
 ```
 
 - InputHandler.Handler
@@ -68,16 +66,14 @@ const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
 It's used to handle the input. Because this function return a Keypress
 
 ```typescript
-
 /// typesgine.InputHandler.Handler(callback(engineIo, keyPress))
 
 const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
-  console.log("KeyPress: ", keyPress)
+  console.log("KeyPress: ", keyPress);
 
-  if (keyPress === 'a')  console.log("Moving player");
-  if (keyPress === 'Escape') process.exit();
-
-})
+  if (keyPress === "a") console.log("Moving player");
+  if (keyPress === "Escape") process.exit();
+});
 ```
 
 - EngineIo
@@ -85,20 +81,18 @@ const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
 It's used to handle the input. Because this function return a Keypress
 
 ```typescript
-
 new typesgine.EngineIo({
   fps: 60, // Frame per second
 
-  //Set the render handler, use peer default is typesgine.RenderTerminal for terminal. 
+  //Set the render handler, use peer default is typesgine.RenderTerminal for terminal.
   renderHandler: new typesgine.Render(new typesgine.RenderTerminal()),
 
-  frameHandler: frameHandler,// - FrameHandler.Handler
-  keypressHandler: inputHandler,// - InputHandler.Handler
+  frameHandler: frameHandler, // - FrameHandler.Handler
+  keypressHandler: inputHandler, // - InputHandler.Handler
 });
 ```
 
-
-<div id="Exemples"></div>
+<div id="Examples"></div>
 
 ## Exemple
 
@@ -107,12 +101,12 @@ See Folder Exemple in the root of the project to see how to use the engine.
 ### Simplest example
 
 ```javascript
-import typesgine from 'typesgine-ascii';
+import typesgine from "typesgine-ascii";
 
 console.clear();
 
 const render = () => {
-  let final = '';
+  let final = "";
   for (let i = 0; i < 16; i++) {
     for (let j = 0; j < 24; j++) {
       final += `${Math.round(Math.random() * (0 - 9) + 9)}`;
@@ -120,15 +114,15 @@ const render = () => {
   }
 
   return final;
-}
+};
 
 const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
   engineIo.render(render(), 24, 16);
-})
+});
 
 const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
-  console.log("KeyPress: ", keyPress)
-})
+  console.log("KeyPress: ", keyPress);
+});
 
 new typesgine.EngineIo({
   fps: 60,
@@ -141,7 +135,7 @@ new typesgine.EngineIo({
 ### Simplest example, using Arrays for render
 
 ```javascript
-import typesgine from 'typesgine-ascii';
+import typesgine from "typesgine-ascii";
 
 console.clear();
 
@@ -161,19 +155,19 @@ const render = () => {
     for (let j = 0; j < 24; j++) {
       final[i][j] = Math.round(Math.random() * (0 - 9) + 9);
     }
-    final[i][final[i].length - 1] = '\n';
+    final[i][final[i].length - 1] = "\n";
   }
 
   return final;
-}
+};
 
 const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
   engineIo.render(render(), 24, 16);
-})
+});
 
 const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
-  console.log("KeyPress: ", keyPress)
-})
+  console.log("KeyPress: ", keyPress);
+});
 
 new typesgine.EngineIo({
   fps: 60,
