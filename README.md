@@ -92,6 +92,20 @@ new typesgine.EngineIo({
 });
 ```
 
+- Render
+
+This is handleHlander, use to create a EngineIo for render. This Need to receive a specific renderer, such as the "new typesgine.RenderTerminal()"
+```typescript
+new typesgine.Render(new typesgine.RenderTerminal())
+```
+
+- RenderTerminal
+
+Specific renderer for terminal, for now the only one in the library, we will provide integrations and other specific renderers
+```typescript
+new typesgine.RenderTerminal()
+```
+
 <div id="Examples"></div>
 
 ## Exemple
