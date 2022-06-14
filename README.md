@@ -1,4 +1,4 @@
-<h1 align="center">typesgine-ascii - Game ASCII engine for terminal</h1>
+<h1 align="center">typesgine-ascii - Render ASCII's into terminal with FPS and I/O</h1>
 
 <p align="center">
   <a href="#about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -13,7 +13,7 @@
 
 <div id="about"></div>
 
-Typesgine is engine for create games ascii into terminal with IO, FPS and render.
+Typesgine is engine render, controll FPS and I/O into terminal. This project can use to create games, menus or beautiful cli programs and MORE
 
 ## technologies 🐱‍🏍🎂
 
@@ -26,9 +26,9 @@ Typesgine is engine for create games ascii into terminal with IO, FPS and render
 
 <div id="Features"></div>
 
+- [x] [Render](#render)
 - [x] [FPS](#fps)
 - [x] [IO](#io)
-- [x] [Render](#render)
 
 <div id="Funcs"></div>
 
