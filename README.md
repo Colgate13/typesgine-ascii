@@ -36,7 +36,7 @@ Typesgine is engine render, controll FPS and I/O into terminal. This project can
 
 - FrameHandler.Handler
 
-This function is called every frame. It's used to render the game.
+This function is called every frame. It's used to render.
 It must execute the render function that needs to receive an Array [][] / [[]] or a String containing the ASCII to be rendered.
 
 If Array [][] / [[]] dont set the width and height of the screen, the engine will set it automatically.
@@ -63,7 +63,7 @@ const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
 
 - InputHandler.Handler
 
-It's used to handle the input. Because this function return a Keypress
+It's used to handle the input. this functions get a keypress into keyboard
 
 ```typescript
 /// typesgine.InputHandler.Handler(callback(engineIo, keyPress))
@@ -78,7 +78,7 @@ const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
 
 - EngineIo
 
-It's used to handle the input. Because this function return a Keypress
+Main function, with which rendering, fps control and I/O are started
 
 ```typescript
 new typesgine.EngineIo({
@@ -112,7 +112,7 @@ new typesgine.RenderTerminal()
 
 See Folder Exemple in the root of the project to see how to use the engine.
 
-### Simplest example
+### Simplest exemple using String
 
 ```javascript
 import typesgine from "typesgine-ascii";
@@ -146,7 +146,7 @@ new typesgine.EngineIo({
 });
 ```
 
-### Simplest example, using Arrays for render
+### Simplest example using Array
 
 ```javascript
 import typesgine from "typesgine-ascii";
