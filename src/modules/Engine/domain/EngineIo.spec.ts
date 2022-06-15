@@ -3,7 +3,6 @@ import { RenderTerminal } from '../../Render/RenderTerminal';
 import { FrameHandler } from '../../Render/FrameRender';
 import { InputHandler } from '../../Input/InputHandler';
 import { Render } from '../../Render/domain/Render';
-import { setInterval } from 'timers/promises';
 
 console.clear();
 
@@ -31,15 +30,15 @@ const frameHandler = FrameHandler.Handler((engineIo: EngineIo) => {
 })
 
 const inputHandler = InputHandler.Handler((engineIo: EngineIo, keyPress: string) => {
-  
+
   console.log("KeyPress: ", keyPress)
   console.log("Letter: ", Commander);
 
-  if (keyPress === 'a') { 
+  if (keyPress === 'a') {
     Commander = true;
   }
 
-  if (keyPress === 'd') { 
+  if (keyPress === 'd') {
     Commander = false;
   }
 })
