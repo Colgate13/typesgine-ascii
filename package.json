@@ -1,6 +1,6 @@
 {
   "name": "typesgine-ascii",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Engine for games ASCII into terminal",
   "main": "dist/typesgine-ascii-v1.0.2.js",
   "types": "dist/main.d.ts",
