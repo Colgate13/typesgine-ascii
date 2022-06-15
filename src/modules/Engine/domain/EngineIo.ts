@@ -39,21 +39,21 @@ export class EngineIo implements IAbstractIo {
   }
 
   public render(data: string[][] | string, width: number = 0, height: number = 0): void {
-    
-      if (this.currentFrameData === data) {
-        return;
-      }
-      
-      this.clear();
-    
-      this.renderHandler.write(
-        typeof data === 'string'
-          ?
-          this.renderString(data, width, height)
-          :
-          this.renderArray(data));
 
-      this.currentFrameData = data;
+    if (this.currentFrameData === data) {
+      return;
+    }
+
+    this.clear();
+
+    this.renderHandler.write(
+      typeof data === 'string'
+        ?
+        this.renderString(data, width, height)
+        :
+        this.renderArray(data));
+
+    this.currentFrameData = data;
   }
 
   public renderArray(dataArray: string[][]): string {

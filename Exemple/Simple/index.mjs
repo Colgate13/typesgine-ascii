@@ -31,8 +31,8 @@ const render = () => {
 }
 
 const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
-  engineIo.render(render(), 24, 16);
-})
+  engineIo.render("㊗2㊗㊗㊗㊗3㊗㊗4㊗㊗", 3, 4); // String
+});
 
 const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
   console.log("KeyPress: ", keyPress)
