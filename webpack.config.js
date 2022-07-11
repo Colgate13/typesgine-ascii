@@ -35,7 +35,7 @@ function getConfig(env) {
     },
     target: 'node',
     output: {
-      filename: '[name].js',
+      filename: 'main.js',
       library: libraryName,
       libraryTarget: 'umd',
       path: path.resolve(__dirname, 'dist'),
@@ -46,18 +46,14 @@ function getConfig(env) {
 
 function fillDev(config) {
   config.mode = 'development';
-  config.entry = {
-    [`${packageName}-v${version}`]: './src/main.ts'
-  };
+  config.entry = './src/main.ts';
 
   config.devtool = 'inline-source-map';
 }
 
 function fillProd(config) {
   config.mode = 'production';
-  config.entry = {
-    [`${packageName}-v${version}`]: './src/main.ts'
-  };
+  config.entry = './src/main.ts';
 }
 
 module.exports = (env) => {
