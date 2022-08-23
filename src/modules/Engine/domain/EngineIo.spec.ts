@@ -1,5 +1,5 @@
 import { EngineIo } from './EngineIo';
-import { RenderTerminal } from '../../Render/RenderTerminal';
+import { RenderTerminal } from '../../Render/Platforms/RenderTerminal';
 import { FrameHandler } from '../../Render/FrameRender';
 import { InputHandler } from '../../Input/InputHandler';
 import { Render } from '../../Render/domain/Render';
