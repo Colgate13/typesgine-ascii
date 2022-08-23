@@ -1,4 +1,4 @@
-import { IRenderFor } from './domain/interfaces/IRender';
+import { IRenderFor } from '../domain/interfaces/IRender';
 
 const CSI = String.fromCharCode(27) + '[';
 
