@@ -1,16 +1,18 @@
 import { IRender } from '../../../../shared/interfaces/IRender'
 import { EngineIo } from '../EngineIo';
 export { IRender } from '../../../../shared/interfaces/IRender'
+import { IInput } from '../../../../modules/Input/domain/interfaces/'
 
 export interface EngineIoProps extends EngineIoFactoryProps {
   renderHandler: IRender;
   fps: number;
   frameHandler: (engine: EngineIo) => void;
-  keypressHandler: (engine: EngineIo, keyPress: string) => void;
+  keypressHandler: (keyPress: string) => void;
+  InputListener: IInput;
 }
 
 export interface EngineIoFactoryProps {
   fps: number;
   frameHandler: (engine: EngineIo) => void;
-  keypressHandler: (engine: EngineIo, keyPress: string) => void;
+  keypressHandler: (keyPress: string) => void;
 }

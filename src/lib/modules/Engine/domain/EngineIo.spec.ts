@@ -1,8 +1,10 @@
 import { EngineIo } from './EngineIo';
-import { RenderTerminal } from '../../Render/Platforms/RenderTerminal';
+import { RenderTerminal } from '../../Render/Platforms/terminal';
 import { FrameHandler } from '../../Render/FrameRender';
 import { InputHandler } from '../../Input/InputHandler';
 import { Render } from '../../Render/domain/Render';
+import { Input } from '../../Input/domain/Input';
+import TerminalInput from '../../Input/Platforms/terminal';
 
 console.clear();
 
@@ -29,7 +31,7 @@ const frameHandler = FrameHandler.Handler((engineIo: EngineIo) => {
   engineIo.render(render(), 24, 16);
 })
 
-const inputHandler = InputHandler.Handler((engineIo: EngineIo, keyPress: string) => {
+const inputHandler = InputHandler.Handler((keyPress: string) => {
 
   console.log("KeyPress: ", keyPress)
   console.log("Letter: ", Commander);
@@ -48,4 +50,5 @@ new EngineIo({
   renderHandler: new Render(new RenderTerminal()),
   frameHandler: frameHandler,
   keypressHandler: inputHandler,
+  InputListener: new Input(new TerminalInput())
 });

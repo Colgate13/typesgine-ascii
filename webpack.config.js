@@ -33,7 +33,7 @@ function getConfig(env) {
     resolve: {
       extensions: ['.ts', '.js']
     },
-    target: 'node',
+    target: 'web',
     output: {
       filename: 'main.js',
       library: libraryName,

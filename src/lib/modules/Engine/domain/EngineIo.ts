@@ -1,3 +1,4 @@
+import { IInput } from '../../Input/domain/interfaces';
 import { getKeyName, IKeyMap } from '../../Input/keyMap';
 import { IAbstractIo } from './interfaces/IAbstractEngineIo';
 import { EngineIoProps, IRender, } from './interfaces/IEngineIo';
@@ -13,20 +14,21 @@ export class EngineIo implements IAbstractIo {
   protected frameDuration: number;
   protected renderHandler: IRender;
   protected frameHandler(engine: EngineIo): void { };
-  protected keypressHandler: (engine: EngineIo, keyPress: string) => void;
+  protected keypressHandler: (keyPress: string) => void;
   protected intervalId: any;
   protected startTime: number;
   protected active = false;
   protected currentFrameData: string | string[][] = '';
+  protected InputListener: IInput;
 
-
-  constructor({ fps, keypressHandler, renderHandler, frameHandler }: EngineIoProps) {
+  constructor({ fps, keypressHandler, renderHandler, frameHandler, InputListener }: EngineIoProps) {
     this.frameDuration = Math.round(1000 / fps);
     this.renderHandler = renderHandler;
     this.startTime = new Date().getTime();
 
     this.frameHandler = frameHandler;
     this.keypressHandler = keypressHandler;
+    this.InputListener = InputListener;
 
     this.initialize();
     setTimeout(() => this.frameHandler(this), 0);
@@ -96,20 +98,11 @@ export class EngineIo implements IAbstractIo {
 
   public exit(): void {
     this.active = false;
-    process.stdin.removeAllListeners();
-    process.exit();
+    this.renderHandler.exit();
   }
 
   protected inputHandler(): void {
-    process.stdin.setRawMode(true);
-    process.stdin.on('data', (buffer: Buffer) => {
-
-      const keyName: IKeyMap = getKeyName(buffer.toJSON().data);
-
-      if (keyName.keyName === 'Escape') process.exit();
-
-      this.keypressHandler(this, keyName.keyName);
-    });
+    this.InputListener.ListenInputs(this.keypressHandler) 
   }
 
   public triggerKeypress(keyName: any): void {
