@@ -1,4 +1,4 @@
-import typesgine from '../dist/main.js';// Change to 'typesgine-ascii', using dist/main.js if clone and build main repo
+const { FrameHandler, InputHandler, EngineIo } = require('../dist/main.js');
 
 console.clear();
 let controllerToRender = false;
@@ -31,11 +31,11 @@ const render = () => {
   return final;
 }
 
-const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
+const frameHandler = FrameHandler.Handler((engineIo) => {
   engineIo.render(controllerToRender ? render() : "㊗2㊗㊗㊗㊗3㊗㊗4㊗㊗", 3, 4);
 });
 
-const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
+const inputHandler = InputHandler.Handler((keyPress) => {
   
   if (keyPress == "a") {
     console.clear()
@@ -51,7 +51,7 @@ const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
 
 })
 
-new typesgine.EngineIo({
+new EngineIo({
   fps: 60,
   frameHandler: frameHandler,
   keypressHandler: inputHandler,

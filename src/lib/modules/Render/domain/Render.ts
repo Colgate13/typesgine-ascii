@@ -15,4 +15,8 @@ export class Render implements IRender {
   public clear(): void { 
     this.Renders.clear();
   }
+
+  public exit(): void { 
+    this.Renders.exit();
+  }
 }
