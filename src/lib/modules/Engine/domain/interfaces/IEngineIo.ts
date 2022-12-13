@@ -7,12 +7,12 @@ export interface EngineIoProps extends EngineIoFactoryProps {
   renderHandler: IRender;
   fps: number;
   frameHandler: (engine: EngineIo) => void;
-  keypressHandler: (keyPress: string) => void;
-  InputListener: IInput;
+  callBackInput: (keyPress: string) => void;
+  inputHandler: IInput;
 }
 
 export interface EngineIoFactoryProps {
   fps: number;
   frameHandler: (engine: EngineIo) => void;
-  keypressHandler: (keyPress: string) => void;
+  callBackInput: (keyPress: string) => void;
 }

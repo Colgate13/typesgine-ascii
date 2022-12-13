@@ -1,7 +1,7 @@
 import { Browser } from './Browser';
 import { IRenderFor } from '../../domain/interfaces/IRender';
 
-export class BrowserFactory extends Browser implements IRenderFor  {
+export class BrowserFactory extends Browser implements IRenderFor {
 
   public write(data: string): void {
     Browser.write(data);

@@ -13,29 +13,29 @@ import { EngineIoProps, IRender, } from './interfaces/IEngineIo';
 export class EngineIo implements IAbstractIo {
   protected frameDuration: number;
   protected renderHandler: IRender;
+  protected inputHandler: IInput;
   protected frameHandler(engine: EngineIo): void { };
-  protected keypressHandler: (keyPress: string) => void;
+  protected callBackInput: (keyPress: string) => void;
   protected intervalId: any;
   protected startTime: number;
   protected active = false;
   protected currentFrameData: string | string[][] = '';
-  protected InputListener: IInput;
 
-  constructor({ fps, keypressHandler, renderHandler, frameHandler, InputListener }: EngineIoProps) {
+  constructor({ fps, callBackInput, renderHandler, frameHandler, inputHandler }: EngineIoProps) {
     this.frameDuration = Math.round(1000 / fps);
     this.renderHandler = renderHandler;
     this.startTime = new Date().getTime();
 
     this.frameHandler = frameHandler;
-    this.keypressHandler = keypressHandler;
-    this.InputListener = InputListener;
+    this.callBackInput = callBackInput;
+    this.inputHandler = inputHandler;
 
     this.initialize();
     setTimeout(() => this.frameHandler(this), 0);
   }
 
   protected initialize(): void {
-    this.inputHandler();
+    this.input();
     this.intervalId = setInterval(() => this.frameHandler(this), this.frameDuration);
     this.active = true;
   }
@@ -92,6 +92,10 @@ export class EngineIo implements IAbstractIo {
     return fullFrame;
   }
 
+  protected input(): void {
+    this.inputHandler.ListenInputs(this.callBackInput)
+  }
+
   public clear(): void {
     this.renderHandler.clear();
   }
@@ -99,10 +103,6 @@ export class EngineIo implements IAbstractIo {
   public exit(): void {
     this.active = false;
     this.renderHandler.exit();
-  }
-
-  protected inputHandler(): void {
-    this.InputListener.ListenInputs(this.keypressHandler) 
   }
 
   public triggerKeypress(keyName: any): void {

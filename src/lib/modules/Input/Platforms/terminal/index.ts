@@ -10,9 +10,9 @@ export class TerminalInput implements IInputFor {
 
       if (keyName.keyName === 'Escape') process.exit();
 
-      Callback(keyName.keyName);
+      Callback(keyName.keyName || 'Unknown');
     });
   }
-  }
+}
 
 export default TerminalInput;

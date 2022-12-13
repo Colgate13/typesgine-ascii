@@ -1,6 +1,7 @@
-import typesgine from 'typesgine-ascii';
+import typesgine from "typesgine-ascii";
 
 console.clear();
+let controllerToRender = false;
 
 const render = () => {
   let final = [
@@ -18,7 +19,7 @@ const render = () => {
     for (let j = 0; j < 24; j++) {
       final[i][j] = Math.round(Math.random() * (0 - 9) + 9);
     }
-    final[i][final[i].length - 1] = '\n';
+    final[i][final[i].length - 1] = "\n";
   }
 
   let Graph = [
@@ -27,20 +28,33 @@ const render = () => {
     ["㊗", "㊗", "㊗", "㊗", "\n"],
   ];
 
-  return Graph;
-}
+  return final;
+};
 
-const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
-  engineIo.render("㊗2㊗㊗㊗㊗3㊗㊗4㊗㊗", 3, 4); // String
-});
+const frameHandler = (engineIo) => {
+  engineIo.render(
+    controllerToRender ? render() : "㊗2㊗㊗㊗㊗3㊗㊗4㊗㊗",
+    3,
+    4
+  );
+};
 
-const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
-  console.log("KeyPress: ", keyPress)
-})
+const inputHandler = (keyPress) => {
+  if (keyPress == "a") {
+    console.clear();
+    controllerToRender = true;
+  }
+
+  if (keyPress == "b") {
+    console.clear();
+    controllerToRender = false;
+  }
+
+  console.log("KeyPress: ", keyPress);
+};
 
 new typesgine.EngineIo({
   fps: 60,
-  renderHandler: new typesgine.Render(new typesgine.RenderTerminal()),
   frameHandler: frameHandler,
-  keypressHandler: inputHandler,
+  callBackInput: inputHandler,
 });
