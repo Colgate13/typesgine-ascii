@@ -33,9 +33,6 @@ const frameHandler = FrameHandler.Handler((engineIo: EngineIo) => {
 
 const inputHandler = InputHandler.Handler((keyPress: string) => {
 
-  console.log("KeyPress: ", keyPress)
-  console.log("Letter: ", Commander);
-
   if (keyPress === 'a') {
     Commander = true;
   }
@@ -49,6 +46,6 @@ new EngineIo({
   fps: 1,
   renderHandler: new Render(new RenderTerminal()),
   frameHandler: frameHandler,
-  keypressHandler: inputHandler,
-  InputListener: new Input(new TerminalInput())
+  callBackInput: inputHandler,
+  inputHandler: new Input(new TerminalInput())
 });

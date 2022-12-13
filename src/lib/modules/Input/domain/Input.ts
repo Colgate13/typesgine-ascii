@@ -1,7 +1,7 @@
 import { IKeyMap } from "../keyMap";
 import { IInput, IInputFor } from "./interfaces";
 
-export class Input implements IInput{
+export class Input implements IInput {
 
   protected KeyInput: IInputFor;
 
@@ -12,6 +12,5 @@ export class Input implements IInput{
   public ListenInputs(Callback: Function): void {
     this.KeyInput.KeyInput(Callback)
   }
-
 
 }

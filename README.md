@@ -34,6 +34,18 @@ Typesgine is engine render, controll FPS and I/O into terminal. This project can
 
 ## Functions
 
+- EngineIo
+
+Main function, with which rendering, fps control and I/O are started
+
+```typescript
+new typesgine.EngineIo({
+  fps: 60, // Frame per second
+  frameHandler: frameHandler, // - FrameHandler.Handler
+  callBackInput: inputHandler, // - InputHandler.Handler
+});
+```
+
 - FrameHandler.Handler
 
 This function is called every frame. It's used to render.
@@ -44,11 +56,11 @@ If Array [][] / [[]] dont set the width and height of the screen, the engine wil
 If String set the width and height of the screen.
 
 ```typescript
-/// typesgine.FrameHandler.Handler(callback(engineIo))
+/// FrameHandler.Handler(callback(engineIo))
 
-const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
+const frameHandler = (engineIo) => {
   engineIo.render("1234", 24, 16);
-});
+};
 
 let Graph = [
   ["㊗", "2", "㊗", "㊗", "\n"],
@@ -56,9 +68,9 @@ let Graph = [
   ["㊗", "4", "㊗", "㊗", "\n"],
 ];
 
-const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
+const frameHandler = (engineIo) => {
   engineIo.render(Graph);
-});
+};
 ```
 
 - InputHandler.Handler
@@ -66,44 +78,14 @@ const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
 It's used to handle the input. this functions get a keypress into keyboard
 
 ```typescript
-/// typesgine.InputHandler.Handler(callback(engineIo, keyPress))
+/// InputHandler.Handler(callback(keyPress))
 
-const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
+const inputHandler = (keyPress) => {
   console.log("KeyPress: ", keyPress);
 
   if (keyPress === "a") console.log("Moving player");
   if (keyPress === "Escape") process.exit();
-});
-```
-
-- EngineIo
-
-Main function, with which rendering, fps control and I/O are started
-
-```typescript
-new typesgine.EngineIo({
-  fps: 60, // Frame per second
-
-  //Set the render handler, use peer default is typesgine.RenderTerminal for terminal.
-  renderHandler: new typesgine.Render(new typesgine.RenderTerminal()),
-
-  frameHandler: frameHandler, // - FrameHandler.Handler
-  keypressHandler: inputHandler, // - InputHandler.Handler
-});
-```
-
-- Render
-
-This is handleHlander, use to create a EngineIo for render. This Need to receive a specific renderer, such as the "new typesgine.RenderTerminal()"
-```typescript
-new typesgine.Render(new typesgine.RenderTerminal())
-```
-
-- RenderTerminal
-
-Specific renderer for terminal, for now the only one in the library, we will provide integrations and other specific renderers
-```typescript
-new typesgine.RenderTerminal()
+};
 ```
 
 <div id="Examples"></div>
@@ -112,9 +94,52 @@ new typesgine.RenderTerminal()
 
 See Folder Exemple in the root of the project to see how to use the engine.
 
-### Simplest exemple using String
+### Simplest example using Array
 
 ```javascript
+import typesgine from "typesgine-ascii";
+
+console.clear();
+
+const render = () => {
+  let final = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 24; j++) {
+      final[i][j] = Math.round(Math.random() * (0 - 9) + 9);
+    }
+    final[i][final[i].length - 1] = "\n";
+  }
+
+  return final;
+};
+const frameHandler = (engineIo) => {
+  engineIo.render(render(), 24, 16);
+};
+
+const inputHandler = (keyPress) => {
+  console.log("KeyPress: ", keyPress);
+};
+
+new typesgine.EngineIo({
+  fps: 60,
+  frameHandler: frameHandler,
+  callBackInput: inputHandler,
+});
+```
+
+### Simplest example using String
+
+```typescript
 import typesgine from "typesgine-ascii";
 
 console.clear();
@@ -130,25 +155,24 @@ const render = () => {
   return final;
 };
 
-const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
+const frameHandler = (engineIo) => {
   engineIo.render(render(), 24, 16);
-});
+};
 
-const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
+const inputHandler = (keyPress) => {
   console.log("KeyPress: ", keyPress);
-});
+};
 
 new typesgine.EngineIo({
   fps: 60,
-  renderHandler: new typesgine.Render(new typesgine.RenderTerminal()),
   frameHandler: frameHandler,
-  keypressHandler: inputHandler,
+  callBackInput: inputHandler,
 });
 ```
 
-### Simplest example using Array
+### Use with typescript
 
-```javascript
+```typescript
 import typesgine from "typesgine-ascii";
 
 console.clear();
@@ -179,15 +203,14 @@ const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
   engineIo.render(render(), 24, 16);
 });
 
-const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
+const inputHandler = typesgine.InputHandler.Handler((keyPress) => {
   console.log("KeyPress: ", keyPress);
 });
 
 new typesgine.EngineIo({
   fps: 60,
-  renderHandler: new typesgine.Render(new typesgine.RenderTerminal()),
   frameHandler: frameHandler,
-  keypressHandler: inputHandler,
+  callBackInput: inputHandler,
 });
 ```
 
