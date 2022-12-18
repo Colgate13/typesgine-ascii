@@ -69,6 +69,8 @@ export class EngineIo implements IAbstractIo {
       line.forEach((char) => {
         fullFrame += char === '\n' ? '\n' : char;
       })
+
+      fullFrame += '\n';
     })
     return fullFrame;
   }
