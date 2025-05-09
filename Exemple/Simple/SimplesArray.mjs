@@ -28,7 +28,7 @@ const frameHandler = typesgine.FrameHandler.Handler((engineIo) => {
   engineIo.render(render(), 24, 16);
 });
 
-const inputHandler = typesgine.InputHandler.Handler((engineIo, keyPress) => {
+const inputHandler = typesgine.InputHandler.Handler((keyPress) => {
   console.log("KeyPress: ", keyPress);
 });
 
